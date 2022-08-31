@@ -1,0 +1,3 @@
+release branch
+ ㄴ 버전 출시 준비 브랜치
+ ㄴ 테스트 QA진행
