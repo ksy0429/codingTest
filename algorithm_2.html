@@ -1,0 +1,39 @@
+<script>
+
+/** 1번 문제
+ * 요청값 : 티켓총수 , [등급, 구매하고싶은 티켓 수]
+ * 조건1 : 등급이 높은 순으로 티켓 구매 가능
+ * 조건2 : 등급이 같으면 더많은 구매티켓 수로 순서 정렬
+ * 조건3 : 남은 티켓보다 구매를 원하는 티켓이 많으면 구매 불가
+ * 판매한 티켓 수 결과로 출력
+ */
+
+let req = [[3,2], [1,8], [2,1]]; // 요청할 값
+
+function solution(tickets, requests) {
+    let remainTicketCnt = tickets;
+    let ticketCnt = 0;
+
+    requests.sort((a, b) => b[0] + b[1] - (a[0] + a[1])); // 1. 등급 내림차순 정렬한다
+    requests.sort((a,b) => { // 2. arr[0]이 같으면 arr[1] 기준으로 내림차순 정렬한다
+        if(a[0] == b[0]) {
+            return a[1] - b[1]
+        } else {
+            return a[0] - b[0]
+        }
+    });
+    //console.log(requests);
+
+    requests.forEach(item => {
+        if(remainTicketCnt >= item[1] && item[1] <= tickets) { // 남은 티켓보다 구매를 원하는 티켓이 같거나 적어야 구매 가능
+            remainTicketCnt -= item[1];
+            ticketCnt += item[1];
+        }
+    });
+
+    return ticketCnt;
+}
+
+console.log(solution(10, req));
+
+</script>
