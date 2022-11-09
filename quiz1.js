@@ -10,6 +10,8 @@ function solution (s) {
    var answer = [];
    let split_str = s.split("");
    let split_point = 0;
+
+
    let res = [];
 
    for(let i=0; i<split_str.length; i++) {
