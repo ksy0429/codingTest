@@ -1,11 +1,11 @@
 <script>
-    let req = [[3,1], [2,1], [2,2], [1,8]]; // 요청할 값
+    let req = [[3,1], [2,1], [2,2], [1,8]];
 
     function solution(tickets, requests) {
         let remainTicketCnt = tickets;
         let ticketCnt = 0;
 
-        requests.sort((a,b) => { // 1. arr[0]이 같으면 arr[1] 기준으로 내림차순 정렬한다
+        requests.sort((a,b) => {
             if(a[0] == b[0]) {
                 return b[1] - a[1]
             } else {
@@ -15,7 +15,7 @@
         console.log(requests);
 
         requests.forEach(item => {
-            if(remainTicketCnt >= item[1] && item[1] <= tickets) { // 2. 남은 티켓보다 구매를 원하는 티켓이 같거나 적어야 구매 가능
+            if(remainTicketCnt >= item[1] && item[1] <= tickets) {
                 remainTicketCnt -= item[1];
                 ticketCnt += item[1];
             }
@@ -24,6 +24,6 @@
         return ticketCnt;
     }
 
-    console.log(solution(10, req));
+    solution(10, req)
 
 </script>

@@ -3,25 +3,20 @@
 
     function solution(diet) {
         let totalKcal = 0;
-        let minusDay = 0; // 저번주 먹은 끼니 (0:아침 1:점심 2:저녁)
-        let minkcal = 0; // 이번주 먹어야 하는 최소칼로리
+        let minusDay = 0;
+        let minkcal = 0;
 
         diet.forEach((item, idx) => {
-            if((idx != 0 && Number(minusDay) < 1)) { // 전날에 아침을 먹은 경우 이번주 아침을 무조건 먹어야 함
+            if((idx != 0 && Number(minusDay) < 1)) {
                 minkcal = item[0];
-                //console.log('1)  다이어트 일차 = ' + idx + ' / 마지막 끼니 = ' + minusDay);
-            } else if( (Number(minusDay + 3) > 3)) { // 전날에 점심 또는 저녁을 먹은 경우 이번주 저녁 전까지 무조건 먹어야 함
+            } else if( (Number(minusDay + 3) > 3)) {
                 minkcal = Math.min(item[0], item[1]);
-                //console.log('2)  다이어트 일차 = ' + idx + ' / 마지막 끼니 = ' + minusDay);
             } else {
                 minkcal = Math.min(item[0], item[1], item[2]);
-                //console.log('3)  다이어트 일차 = ' + idx + ' / 마지막 끼니 = ' + minusDay);
             }
 
-            //console.log('선택된 최소칼로리 : ' + minkcal);
-
             for (let i = 0; i < item.length; i++) {
-                if (item[i] === minkcal) { // 선택된 최소 칼로리가 몇번째 끼니인지 확인
+                if (item[i] === minkcal) {
                     minusDay = i;
                 }
             }
@@ -30,9 +25,9 @@
 
         });
 
-        console.log('결론 (총 최소칼로리) : ' + totalKcal);
+        console.log(totalKcal);
     }
 
-    console.log(solution(req));
+    solution(req);
 
 </script>
